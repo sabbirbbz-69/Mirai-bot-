@@ -19,13 +19,13 @@
     "EMAIL": "",
     "PASSWORD": "",
     "OTPKEY": "",
-    "FACEBOOK_ADMIN": "",
+    "FACEBOOK_ADMIN": "61592729698094",
     "BOTNAME": "Mirai-V3-Unofficial",
     "PREFIX": "!",
-    "BOXADMIN": "6804616456270022",
-    "ADMINBOT": [],
+    "BOXADMIN": "61592729698094",
+    "ADMINBOT": "61592729698094",
     "NDH": [
-        "502275138"
+        "61592729698094"
     ],
     "version": "3.0.0",
     "menu": {
