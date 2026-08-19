@@ -59,7 +59,7 @@ global.getText = function (...args) {
     return text;
 }
 function onBot({ models }) {
-    login({ appState: global.utils.parseCookies(fs.readFileSync('./cookie.txt', 'utf8'))}, async (loginError, api) => {
+    login({ appState: JSON.parse(fs.readFileSync('./appstate.json', 'utf8')) }, async (loginError, api) => {
         if (loginError) return console.log(loginError);
         api.setOptions(global.config.FCAOption);
         writeFileSync('./utils/data/fbstate.json', JSON.stringify(api.getAppState(), null, 2));
