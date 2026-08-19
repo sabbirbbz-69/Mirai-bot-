@@ -2,8 +2,7 @@ const { readdirSync, readFileSync, writeFileSync, existsSync, unlinkSync, rm } =
 const { join, resolve } = require("path");
 const { execSync } = require('child_process');
 const logger = require("./utils/log.js");
-//const login = require("../fca-unofficial");
-const login = require('@dongdev/fca-unofficial')
+const login = require('arif-fca');
 const fs = require('fs-extra');
 const moment = require('moment-timezone');
 if (!fs.existsSync('./utils/data')) {
