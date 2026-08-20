@@ -1,4 +1,4 @@
-Module.exports = function ({ Users, Threads, Currencies }) {
+module.exports = function ({ Users, Threads, Currencies }) {
     const logger = require(process.cwd() + "/utils/log.js");
 
     function sleep(ms) {
