@@ -1,4 +1,4 @@
-Module.exports = function ({ api, models, Users, Threads, Currencies }) {
+module.exports = function ({ api, models, Users, Threads, Currencies }) {
    const stringSimilarity = require('string-similarity'), escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), logger =  require("../../utils/log.js");
     const moment = require("moment-timezone");
     return async function ({ event }) {
