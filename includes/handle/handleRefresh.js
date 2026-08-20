@@ -10,7 +10,7 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
         try {
             let threadData = await getData(threadID);
             if (!threadData) {
-                logger('Dữ liệu nhóm không tồn tại: ' + threadID, '[ERROR]');
+                logger('গ্রুপের ডাটা বিদ্যমান নেই: ' + threadID, '[ERROR]');
                 return;
             }
 
@@ -22,26 +22,26 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
                 case "log:thread-admins": {
                     if (logMessageData.ADMIN_EVENT == "add_admin") {
                         dataThread.adminIDs.push({ id: logMessageData.TARGET_ID });
-                        api.sendMessage(`✅ Update ${dataThread.adminIDs.length} QTV`, threadID);
+                        api.sendMessage(`✅ মোট ${dataThread.adminIDs.length} জন অ্যাডমিন আপডেট করা হয়েছে।`, threadID);
                     } else if (logMessageData.ADMIN_EVENT == "remove_admin") {
                         dataThread.adminIDs = dataThread.adminIDs.filter(item => item.id != logMessageData.TARGET_ID);
-                        api.sendMessage(`✅ Update ${dataThread.adminIDs.length} QTV`, threadID);
+                        api.sendMessage(`✅ মোট ${dataThread.adminIDs.length} জন অ্যাডমিন আপডেট করা হয়েছে।`, threadID);
                     }
-                    logger('Làm mới list admin tại nhóm ' + threadID, '[UPDATE DATA]');
+                    logger('গ্রুপের অ্যাডমিন লিস্ট রিফ্রেশ করা হয়েছে: ' + threadID, '[UPDATE DATA]');
                     await setData(threadID, { threadInfo: dataThread });
                     break;
                 }
                 case "log:thread-name": {
-                    logger('Cập nhật tên tại nhóm ' + threadID, '[UPDATE DATA]');
+                    logger('গ্রুপের নাম আপডেট করা হয়েছে: ' + threadID, '[UPDATE DATA]');
                     dataThread.threadName = logMessageData.name;
                     await setData(threadID, { threadInfo: dataThread });
-                    api.sendMessage(`📝 Tên nhóm đã được đổi thành: ${logMessageData.name}`, threadID);
+                    api.sendMessage(`📝 গ্রুপের নতুন নাম দেওয়া হয়েছে: ${logMessageData.name}`, threadID);
                     break;
                 }
                 case 'log:unsubscribe': {
                     const userFbId = logMessageData.leftParticipantFbId;
                     if (userFbId == api.getCurrentUserID()) {
-                        logger('Thực hiện xóa data của nhóm ' + threadID, '[DELETE DATA THREAD]');
+                        logger('বট গ্রুপ থেকে রিমুভ হওয়ায় ডাটা মুছে ফেলা হচ্ছে: ' + threadID, '[DELETE DATA THREAD]');
                         const index = global.data.allThreadID?.findIndex(item => item == threadID);
                         if (index > -1) global.data.allThreadID.splice(index, 1);
                         await delData(threadID);
@@ -56,14 +56,14 @@ module.exports = function ({ api, models, Users, Threads, Currencies }) {
                             dataThread.adminIDs.splice(adminIndex, 1);
                         }
 
-                        logger('Thực hiện xóa user ' + userFbId, '[DELETE DATA USER]');
+                        logger('ইউজারের ডাটা মুছে ফেলা হয়েছে: ' + userFbId, '[DELETE DATA USER]');
                         await setData(threadID, { threadInfo: dataThread });
                     }
                     break;
                 }
             }
         } catch (e) {
-            console.error('Đã xảy ra lỗi update data: ' + e);
+            console.error('ডাটা আপডেট করার সময় ত্রুটি দেখা দিয়েছে: ' + e);
         }
         return;
     };
