@@ -1,4 +1,4 @@
-module.exports = function({
+Module.exports = function({
   api,
   models
 }) {
@@ -18,7 +18,7 @@ module.exports = function({
   const logger = require("../utils/log.js");
   (async () => {
     try {
-      logger.loader("Tiến hành tải dữ liệu người dùng và nhóm");
+      logger.loader("Loading user and group data...");
       const [threads, users, currencies] = await Promise.all([
         Threads.getAll(),
         Users.getAll(['userID', 'name', 'data']),
@@ -64,10 +64,10 @@ module.exports = function({
         const dataC = currencies[i];
         global.data.allCurrenciesID.push(String(dataC.userID));
       }
-      logger.loader(`Tải thành công dữ liệu của ${global.data.allThreadID.length} nhóm`);
-      logger.loader(`Tải thành công dữ liệu của ${global.data.allUserID.length} người dùng`);
+      logger.loader(`Successfully loaded data for ${global.data.allThreadID.length} groups`);
+      logger.loader(`Successfully loaded data for ${global.data.allUserID.length} users`);
     } catch (error) {
-      logger(`Tải môi trường thất bại: ${error}`, 'error');
+      logger(`Failed to load environment: ${error}`, 'error');
     }
   })();
   require('./handle/handleSchedule.js')({
@@ -109,8 +109,8 @@ module.exports = function({
       const j = i.hasOwnProperty('PREFIX') ? i.PREFIX : global.config.PREFIX;
       const k = global.config.BOTNAME;
       if (event.body && event.body.toLowerCase() === 'duyetbox') {
-        api.sendMessage(`[ Thông Báo ]\n\n📜 Yêu cầu duyệt từ box ID: ${event.threadID}`, f);
-        return api.sendMessage(`✅ Đã gửi yêu cầu duyệt đến nhóm admin!`, event.threadID, async (err, info) => {
+        api.sendMessage(`[ NOTICE ]\n\n📜 Approval request from Box ID: ${event.threadID}`, f);
+        return api.sendMessage(`✅ Approval request has been sent to the admin group!`, event.threadID, async (err, info) => {
           if (err) console.error(err);
           await new Promise(resolve => setTimeout(resolve, 10 * 1000));
           api.unsendMessage(info.messageID);
@@ -122,7 +122,7 @@ module.exports = function({
         });
       }
       if (event.body && event.body.startsWith(j)) {
-        return api.sendMessage(`❎ Nhóm của bạn chưa được Admin duyệt, hãy chat "duyetbox" để yêu cầu được duyệt`, event.threadID, async (err, info) => {
+        return api.sendMessage(`❎ Your group has not been approved by the Admin yet. Type "duyetbox" to request approval.`, event.threadID, async (err, info) => {
           if (err) console.error(err);
           await new Promise(resolve => setTimeout(resolve, 10 * 1000));
           api.unsendMessage(info.messageID);
