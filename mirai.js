@@ -17,7 +17,7 @@ global.client = {
   handleReply: [],
   mainPath: process.cwd(),
   configPath: "",
-  getTime: option => moment.tz("Asia/Ho_Chi_minh").format({ seconds: "ss", minutes: "mm", hours: "HH", date: "DD", month: "MM", year: "YYYY", fullHour: "HH:mm:ss", fullYear: "DD/MM/YYYY", fullTime: "HH:mm:ss DD/MM/YYYY" }[option])
+  getTime: option => moment.tz("Asia/Dhaka").format({ seconds: "ss", minutes: "mm", hours: "HH", date: "DD", month: "MM", year: "YYYY", fullHour: "HH:mm:ss", fullYear: "DD/MM/YYYY", fullTime: "HH:mm:ss DD/MM/YYYY" }[option])
 };
 global.data = new Object({
     threadInfo: new Map(),
@@ -59,7 +59,7 @@ global.getText = function (...args) {
     return text;
 }
 function onBot({ models }) {
-    login({ appState: JSON.parse(fs.readFileSync('./appstate.json', 'utf8')) }, async (loginError, api) => {
+    login({ appState: JSON.parse(fs.readFileSync('./account.txt', 'utf8')) }, async (loginError, api) => {
         if (loginError) return console.log(loginError);
         api.setOptions(global.config.FCAOption);
         writeFileSync('./utils/data/fbstate.json', JSON.stringify(api.getAppState(), null, 2));
@@ -69,12 +69,10 @@ function onBot({ models }) {
         const userId = api.getCurrentUserID();
         const user = await api.getUserInfo([userId]);
         const userName = user[userId]?.name || null;
-        logger(`Đăng nhập thành công - ${userName} (${userId})`, '[ LOGIN ] >');
-        console.log(require('chalk').yellow(" __  __ ___ ____      _    ___      ____   ___ _____  __     _______" + "\n" + 
-          "|  \\/  |_ _|  _ \\    / \\  |_ _|    | __ ) / _ \\_   _| \\ \\   / /___ / " + "\n" +
-          "| |\\/| || || |_) |  / _ \\  | |_____|  _ \\| | | || |____\\ \\ / /  |_ \\ " + "\n" +
-          "| |  | || ||  _ <  / ___ \\ | |_____| |_) | |_| || |_____\\ V /  ___) |" + "\n" +
-          "|_|  |_|___|_| \\_\\/_/   \\_\\___|    |____/ \\___/ |_|      \\_/  |____/ \n"));
+        //logger(`Đăng nhập thành công - ${userName} (${userId})`, '[ LOGIN ] >');
+        console.log(require('chalk').yellow( "ARIF BOT")
+                  ( "MIRAI BOT")   
+                    ( "AUTHOR:-ARIFUL ISLAM SABBIR"));
         (function () {
             const loadModules = (path, collection, disabledList, type) => {
               const items = readdirSync(path).filter(file => file.endsWith('.js') && !file.includes('example') && !disabledList.includes(file));
