@@ -7,7 +7,7 @@ const logger = require('../../utils/log');
 module.exports = function ({ api, Threads }) {
   cron.schedule('*/10 * * * *', async () => {
     const cc = path.join(__dirname, '..', '..', 'utils', 'data', 'check_data.json');
-    const currentTime = moment().tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD HH:mm:ss');
+    const currentTime = moment().tz('Asia/Dhaka').format('YYYY-MM-DD HH:mm:ss');
     let lastRunTime = null;
     if (fs.existsSync(cc)) {
         const { datetime } = JSON.parse(fs.readFileSync(cc, 'utf-8'));
@@ -26,7 +26,7 @@ module.exports = function ({ api, Threads }) {
         }
         if (dataChanged) {
             fs.writeFileSync(cc, JSON.stringify({ datetime: currentTime }));
-            logger(`Tự động cập nhật data của ${groupList.length} box`, '[ DATA ] >');
+            logger(`Successfully updated data for ${groupList.length} groups`, '[ DATA ] >');
         }
     }
   });
