@@ -1,16 +1,16 @@
 {
-    "name": "Mirai-Bot",
-    "version": "3.0.0",
-    "description": "A simple Facebook Messenger Bot made by me(CatalizCS) and my brother SpermLord.",
-    "main": "mirai.js",
+    "name": "ARIF BOT",
+    "version": "1.0.0",
+    "description": "A simple Facebook Messenger Bot made by ARIFUL ISLAM SABBIR.",
+    "main": "arif.js",
     "scripts": {
         "start": "node index"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/DongDev-VN/Mirai-Bot-V3.git"
+        "url": "git+https://github.com/sabbirbbz/Mirai-bot-.git"
     },
-    "author": "DongDev",
+    "author": "ARIFUL",
     "dependencies": {
         "arif-fca": "^2.0.1",
         "axios": "^1.7.7",
