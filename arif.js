@@ -70,10 +70,10 @@ function onBot({ models }) {
         const user = await api.getUserInfo([userId]);
         const userName = user[userId]?.name || null;
         
-        console.log(require('chalk').yellow( "ARIF BOT")
-                  ( "MIRAI BOT")   
-                    ( "AUTHOR:-ARIFUL ISLAM SABBIR"));
-        (function () {
+        console.log(require('chalk').yellow("ARIF BOT"));
+        console.log(require('chalk').yellow("MIRAI BOT"));
+        console.log(require('chalk').yellow("AUTHOR:-ARIFUL ISLAM SABBIR"));
+     (function () {
             const loadModules = (path, collection, disabledList, type) => {
               const items = readdirSync(path).filter(file => file.endsWith('.js') && !file.includes('example') && !disabledList.includes(file));
               let loadedCount = 0;   
