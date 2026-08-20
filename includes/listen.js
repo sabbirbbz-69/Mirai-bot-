@@ -1,4 +1,4 @@
-Module.exports = function({
+module.exports = function({
   api,
   models
 }) {
