@@ -7,7 +7,7 @@
         "logLevel": "error",
         "selfListen": true,
         "selfListenEvent": true,
-        "autoMarkDelivery": false,
+        "autoMarkDelivery": true,
         "autoReconnect": true
     },
     "language": "en",
@@ -19,18 +19,18 @@
     "EMAIL": "",
     "PASSWORD": "",
     "OTPKEY": "",
-    "FACEBOOK_ADMIN": "61592729698094",
-    "BOTNAME": "Mirai-V3-Unofficial",
+    "FACEBOOK_ADMIN": "61589411307081",
+    "BOTNAME": "ARIF BOT",
     "PREFIX": "!",
-    "BOXADMIN": "61592729698094",
+    "BOXADMIN": "1796609494868303",
     "ADMINBOT": "61592729698094",
     "NDH": [
-        "61592729698094"
+        "61589411307081"
     ],
-    "version": "3.0.0",
+    "version": "1.0.0",
     "menu": {
         "autoUnsend": {
-            "status": true,
+            "status": false,
             "timeOut": 60
         }
     }
