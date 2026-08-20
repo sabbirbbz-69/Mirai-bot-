@@ -10,7 +10,7 @@
         "autoMarkDelivery": false,
         "autoReconnect": true
     },
-    "language": "vi",
+    "language": "en",
     "DeveloperMode": false,
     "autoCreateDB": true,
     "allowInbox": true,
