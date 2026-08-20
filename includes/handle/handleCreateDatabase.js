@@ -1,4 +1,4 @@
-module.exports = function ({ Users, Threads, Currencies }) {
+Module.exports = function ({ Users, Threads, Currencies }) {
     const logger = require(process.cwd() + "/utils/log.js");
 
     function sleep(ms) {
@@ -79,13 +79,13 @@ module.exports = function ({ Users, Threads, Currencies }) {
                                 gender: singleData.gender
                             });
                             allUserID.push(String(singleData.id));
-                            logger(`Người dùng mới: ${singleData.id} | ${singleData.name}`, '[ DATABASE ] >');
+                            logger(`New User: ${singleData.id} | ${singleData.name}`, '[ DATABASE ] >');
                             await sleep(500);
                         }
                     }
                 }
 
-                logger(`Nhóm mới: ${threadID} | ${threadIn4.threadName}`, '[ DATABASE ] >');
+                logger(`New Group: ${threadID} | ${threadIn4.threadName}`, '[ DATABASE ] >');
             }
 
             const userExists = await Users.getData(senderID);
@@ -99,7 +99,7 @@ module.exports = function ({ Users, Threads, Currencies }) {
                 await Users.createData(senderID, setting3);
                 allUserID.push(senderID);
                 userName.set(senderID, infoUsers.name);
-                logger(`Người dùng mới: ${senderID} | ${infoUsers.name}`, '[ DATABASE ] >');
+                logger(`New User: ${senderID} | ${infoUsers.name}`, '[ DATABASE ] >');
                 await sleep(500);
             }
 
