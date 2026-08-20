@@ -69,7 +69,7 @@ function onBot({ models }) {
         const userId = api.getCurrentUserID();
         const user = await api.getUserInfo([userId]);
         const userName = user[userId]?.name || null;
-        //logger(`Đăng nhập thành công - ${userName} (${userId})`, '[ LOGIN ] >');
+        
         console.log(require('chalk').yellow( "ARIF BOT")
                   ( "MIRAI BOT")   
                     ( "AUTHOR:-ARIFUL ISLAM SABBIR"));
@@ -82,10 +82,10 @@ function onBot({ models }) {
                   const item = require(join(path, file));
                   const { config, run, onLoad, handleEvent } = item;
                   if (!config || !run || (type === 'commands' && !config.commandCategory)) {
-                    throw new Error(`Lỗi định dạng trong ${type === 'commands' ? 'lệnh' : 'sự kiện'}: ${file}`);
+                    throw new Error(`Format error in ${type === 'commands' ? 'command' : 'event'}: ${file}`);
                   }  
                   if (global.client[collection].has(config.name)) {
-                    throw new Error(`Tên ${type === 'commands' ? 'lệnh' : 'sự kiện'} đã tồn tại: ${config.name}`);
+                    throw new Error(`${type === 'commands' ? 'Command' : 'Event'} name already exists: ${config.name}`);
                   }
                   if (config.envConfig) {
                     global.configModule[config.name] = global.configModule[config.name] || {};
@@ -100,11 +100,11 @@ function onBot({ models }) {
                   global.client[collection].set(config.name, item);
                   loadedCount++;
                 } catch (error) {
-                  console.error(`Lỗi khi tải ${type === 'commands' ? 'lệnh' : 'sự kiện'} ${file}:`, error);
+                  console.error(`Error loading ${type === 'commands' ? 'command' : 'event'} ${file}:`, error);
                 }
               }
               if (loadedCount === 0) {
-                console.log(`Không tìm thấy ${type === 'commands'? 'lệnh' :'sự kiện'} nào trong thư mục ${path}`); 
+                console.log(`No ${type === 'commands'? 'commands' :'events'} found in directory ${path}`); 
               }
               return loadedCount;
             };
@@ -131,9 +131,9 @@ function onBot({ models }) {
               };
               api.httpPost("https://www.facebook.com/api/graphql/", form, (e, i) => {
                 const res = JSON.parse(i);
-                if (e || res.errors) return logger("Lỗi không thể xóa cảnh cáo của facebook.", "error");
+                if (e || res.errors) return logger("Error: Unable to clear Facebook warning.", "error");
                 if (res.data.fb_scraping_warning_clear.success) {
-                  logger("Đã vượt cảnh cáo facebook thành công.", "[ SUCCESS ] >");
+                  logger("Successfully bypassed Facebook warning.", "[ SUCCESS ] >");
                   global.handleListen = api.listenMqtt(listenerCallback);
                   setTimeout(() => (mqttClient.end(), connect_mqtt()), 1000 * 60 * 60 * 1);
                   logger(global.getText('mirai', 'successConnectMQTT'), '[ MQTT ]');
